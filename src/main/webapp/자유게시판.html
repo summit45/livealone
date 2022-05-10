@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자유게시판</title>
+<script type="text/javascript" src="main_js.js"></script>
+<link type="text/css" rel="stylesheet" href="main_css.css">
+<style>
+table {
+	background-color : aliceblue;
+	margin: 0% 11.5%;
+	padding:0px;
+	border: 0;
+	width: 76.9%
+}
+span {
+	border : 2px solid black;
+	padding-left : 3px;
+	padding-right : 3px;
+}
+td, th {
+	padding: 0px;
+	margin:0px;
+}
+#memo_view{
+    padding:0px;
+    margin: 0% 8.5% 0% 11.5%;
+}
+#memo_view>div{
+    margin:0px; 
+    border: none;
+    border-top: 3px solid orange;
+    border-right: 2px dotted orange;
+    background-color: #ebc593;
+    text-align: center;
+    display: inline-block;
+}
+td>div{
+    background-color: white;
+    margin:0px; 
+    border: none;
+    border-right: 2px dotted black;
+    text-align: center;
+    display: inline-block;
+}
+section>button{
+    margin-top: 4%;
+    margin-left: 11.5%;
+}
+#inte_button:hover{
+ background-color: lightgray;
+ color: white;
+}
+</style>
+</head>
+<body>
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<section>
+<button onclick="window.location.href='자유게시판_작성.html'">작성하기</button>
+<div id="memo_view"><div style="border-left: 3px solid orange; width: 5%">번호</div><div style="width: 14%;">게시일</div><div style="width: 60%;">제목</div><div style="width: 12%;">닉네임</div><div style="border-right: 3px solid orange; width: 4%">공감</div></div>
+<script>
+function content_view(i) {
+	let key=localStorage.key(i);
+	let vals=localStorage.getItem(key).split(",");
+	let newWin=window.open("","","left=500, top=400, width=400, height=160");
+	newWin.document.write("<h3>게시글</h3><p style='text-align: right; color: gray; font-size: 13px;'>작성자: "+vals[4]+"</p><hr>");
+	newWin.document.title ="게시글 띄우기";
+	newWin.document.body.style.backgroundColor= "#FAEADE";
+    newWin.document.write(vals[1]);
+}
+
+if(window.localStorage){
+    document.write("<table>");
+    let j=0;
+    for(let i=0; i<localStorage.length; i++){
+		let key=localStorage.key(i);
+        if(isNaN(key.substr(0,1))!=true){
+        	let vals=localStorage.getItem(key).split(",");
+        	document.write("<tr>");
+            document.write("<td><div style='width: 5.35%;'>"+(j+1)+"</div>");
+            document.write("<div style='width: 14.55%;'>"+key+"</div>");
+            document.write("<div style='text-align: left; width: 62.6%;'>&nbsp;&nbsp;<a onclick='content_view("+i+");' style='cursor: pointer;'>"+vals[0]+"</a></div>");
+            document.write("<div style='width: 12.55%;'>"+vals[2]+"</div>");
+            document.write("<div id='inte_button' style='width: 4.2%; border: none; cursor: pointer;' onclick='get_interest("+i+")'>"+vals[3]+"</div></td>");
+            document.write("</tr>");
+            j++;
+        }
+	}
+    document.write("</table>");
+}
+else {
+	alert("지원하지 않습니다.");
+}
+
+function get_interest(i){
+	let key=localStorage.key(i);
+	let vals=localStorage.getItem(key).split(",");
+	vals[3]=parseInt(vals[3])+1;
+	
+	localStorage.setItem(key, [vals[0], vals[1], vals[2], vals[3], vals[4]]);
+}
+</script>
+</section>
+</body>
+</html>

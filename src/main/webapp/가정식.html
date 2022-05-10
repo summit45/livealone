@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>혼밥레시피공유</title>
+<script type="text/javascript" src="main_js.js"></script>
+<script>
+
+function showrow(){
+	let input=document.getElementById("level");
+	let selectlevel=input.options[input.selectedIndex].text;
+	let tbody=document.getElementById("tbody");
+	let string =tbody.getElementsByTagName("tr");
+	if (selectlevel=="ALL"){
+		for(let i=0;i<string.length;i++)
+			string[i].style.display="";}
+	else
+		for(let i=0;i<string.length;i++){
+			let level=string[i].getElementsByTagName("td")[1];
+			if(level){
+				if(level.innerHTML==selectlevel)
+					string[i].style.display="";
+				else
+					string[i].style.display="none";}
+			}
+		}
+
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&display=swap');
+@import url('main_css.css');
+figure,figcaption {text-align:center;}
+body{background-image: url('media/도트배경.png');}
+
+.table {
+	border-collapse: collapse;
+  	margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 1500px;
+    box-shadow: 0 0 20px #513b3d;
+    border:1px none;
+    
+    
+}
+.table td,.table th{	
+	padding:5px 0px;
+	
+}
+
+.table thead th {
+	background-color:#484146;
+	border: 1px none #A69188;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 3px solid #ffffff;
+    font-weight: bold;
+    font-size:1.2em;
+}
+.table tbody tr {
+    border-bottom: 1px none;
+    background-color: #E6E2D9;
+    border-bottom: 3px solid #ffffff;
+    font-size:1.2em;
+}
+
+.table tbody tr:nth-child(even){
+	background-color:#F9F9F3;
+}
+.table tbody tr:hover{
+	font-weight: bold;
+	}
+h1 {
+	font-weight: bold;
+	padding-left: 200px
+}
+#levels {
+margin:auto;
+}
+
+</style>
+</head>
+<body>
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+ 	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<h1>🧂가정식 레시피🥣</h1>
+<div id="levels" style="text-align:center">
+	<iframe name="youtube" width="1100" height="400" src="https://www.youtube.com/embed/qWbHSOplcvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<span>난이도 선택</span>
+		<select size=1 id="level" onchange="showrow()">
+			<option value="1">ALL</option>
+			<option value="2">⭐</option>
+			<option value="3">⭐⭐</option>
+			<option value="4">⭐⭐⭐</option>
+		</select>
+</div>
+<br><br>		
+<table border="1" class="table">
+	<thead>
+		<tr><th>메뉴명</th><th>난이도</th><th>재료</th><th>레시피</th></tr>
+	</thead>
+	<tbody id="tbody">
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/qWbHSOplcvY" target="youtube">
+			<img src="media/김치찌개.png" width="200" height="130">
+			<figcaption>김치찌개</figcaption></a>
+		</figure></td><td>⭐⭐</td><td>양파,두부,돼지고기,멸치 육수,파,김치,참기름,설탕,국간장,고춧가루</td><td>1.냄비에 참기름을 두르고 김치와 돼지고기를 넣고 볶아준다.
+		<br>2.설탕 한스푼을 넣고 김치국물과 육수를 부은 후, 끓인다.<br>3.끓기 시작하면 양파,국간장,고춧가루 한스푼,두부,파를 넣고 20분 정도 끓여주면 완성</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/ffuakdFmuh4" target="youtube">
+			<img src="media/된장찌개.png" width="200" height="130">
+			<figcaption>된장찌개</figcaption></a>
+		</figure></td><td>⭐</td><td>된장,고추장,고춧가루,감자,애호박,팽이버섯,두부,양파,물</td><td>
+1.물 2컵 (400ml), 된장 1큰술 고추장 1큰술을 넣고 잘 풀어줍니다.<br>2.한번 끓기 시작하면 양파, 애호박, 버섯, 두부를 넣어줍니다.
+<br>3.마지막으로 간을 보고 허전하다면 고춧가루를 좀 넣고 20분가량 끓여주기만 하면 완성</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/bQDQXAQxO6A" target="youtube">
+			<img src="media/고추장_불고기.png" width="200" height="130">
+			<figcaption>고추장 불고기</figcaption></a>
+		</figure></td><td>⭐⭐⭐</td><td> 돼지고기(앞다리500g),양파, 대파<br>양념: 고추장 3,고춧가루 2,간장 2, 설탕 1, 마늘 1, 후추 톡톡</td><td>1. 양념과 고기 섞기 (바로 먹어도 되고 냉장고에 30분 재워도 됨)<br>
+2. 팬에 기름 두르고 고기 볶기 (중불)<br>3. 고기가 익으면 양파 넣고 볶기<br>4. 다 볶아지면 대파 넣고 볶으면 완성</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/xsTFsunt6-8" target="youtube">
+			<img src="media/미역국.png" width="200" height="130">
+			<figcaption>미역국</figcaption></a>
+		</figure></td><td>⭐⭐⭐</td><td>미역,소고기 국거리용,다진마늘,참기름,국간장,소금</td><td>1.미역을 물에 10분 불린다.<br>2.냄비에 참기를 넣고 고기를 볶아주다가 미역을 넣고 5분간 볶는다.<br>
+		3.미역이 잠길 정도로 물을 붓고 끓인다.<br>4.끓으면 국간장과 소금을 기호에 따라 넣은 뒤 중약불로 20분 가량 끓이면 완성</td></tr>	
+	</tbody>
+</table>
+
+</body>
+</html>

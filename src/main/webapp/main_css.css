@@ -1,0 +1,129 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&display=swap');
+
+body{
+  margin: 0px;
+  padding: 0px;
+  background: #fbe7b9;
+ }
+ .menu {
+background: #AA9087;
+margin:0px; 
+padding: 0px;
+text-align:center;
+cursor: pointer;
+color: white;
+font-size:25px;
+font-weight:bold;
+border-spacing: none;
+border: 0px;
+border-top: 3px solid #837774;
+border-bottom: 3px solid #837774;
+ }
+
+ .menu > ul{
+ padding:0;
+ margin:0; 
+ background-color: #AA9087;
+ list-style: none;
+}
+
+.menu > ul > li {
+        display: inline-block;
+        position: relative;
+        line-height: 2.5em;
+        list-style:none;
+        padding: auto;
+        text-align: center;
+        border-right: 2px dashed #837774;
+        width: 353px;
+      }
+.menu > ul > li > a{
+   color: #ffffff;
+   
+}
+.menu > ul > li > ul > li > a{
+   color: #ffffff;
+   line-height:2em;
+   
+}
+.menu > ul > li > ul {
+        position: absolute;
+        list-style: none;
+        padding-left: 0px;
+        display: none;
+        font: bold 20px 'Malgun Gothic';
+        text-align: center;
+        width: 355px;
+        z-index:999;
+      }
+.menu > ul > li:hover > ul {
+display: block;
+background: #837774;
+
+      }
+.menu > ul > li > ul > li >a:hover {
+   display: block;
+   color:pink;
+   text-decoration: underline;}
+ a{
+  text-decoration: none;
+ }
+ #dinner{
+  margin: 0% 10%;
+  border: none;
+  cursor: pointer; 
+ }
+ 
+ header {
+  background: #184D47; 
+  margin: 0px; 
+  padding:0px;
+ }
+ header>div{
+  padding: 0px;
+  margin: 0px;
+  display:inline-block; 
+ }
+
+
+ #survey_box{
+  font-size: 15px; 
+  border: none;
+  text-align: left;
+  margin: 1% 8%;
+  padding-top: 5px;
+ }
+ 
+ .survey{
+  background-color: rgb(255,255,255,0.5);
+  border: #e6c28e solid 3px;
+  border-radius: 5px;
+ }
+ 
+#weather_box{
+  margin: 2% 8%;
+  border: none; 
+  text-align: center;
+  padding: 0px;
+  color: white;
+  font-size: 25px;
+ }
+  .box
+ {
+  margin: 3px 5px; 
+  padding-top: 40px;
+  width: 550px; 
+  height: 300px;
+  border-radius: 20px;
+  border: white solid 5px;
+  text-align: center;
+  font: bold 25px 'Malgun Gothic';
+ }
+ #best{
+  margin: 15px 20px;
+  border:none;
+  border-collapse: collapse;
+  font-size: 17px;
+  border-spacing: 0; 
+ }

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>간단한 지도 표시하기</title>  
+    <link href="main_css.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d69c2000e0b7319537bcf1a368eaf8f6"></script>
+</head>
+
+<body>
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<!-- 지도 -->
+<section>
+	<div id="map" style="width:500px; height:400px; margin:auto; margin-top:100px;"></div>
+	<br></br>
+	<p id="show_info" style="text-align:center; margin:auto; "></p>
+
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = { 
+		center: new kakao.maps.LatLng(37.5452, 126.9756), // 지도의 중심좌표
+	    level: 9 // 지도의 확대 레벨
+	 };  
+	
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 지도에 표시할 원을 생성합니다
+	var circle = new kakao.maps.Circle({
+	    center : new kakao.maps.LatLng(37.5371, 126.9706),  // 원의 중심좌표 입니다 
+	    radius: 1500, // 미터 단위의 원의 반지름입니다 
+	    strokeWeight: 2, // 선의 두께입니다 
+	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'long', // 선의 스타일 입니다
+	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	}); 
+	circle.setMap(map); // 지도에 원을 표시합니다 
+	
+	var circle2 = new kakao.maps.Circle({
+	    center : new kakao.maps.LatLng(37.4715, 126.9343),  // 원의 중심좌표 입니다 
+	    radius: 1500, // 미터 단위의 원의 반지름입니다 
+	    strokeWeight: 2, // 선의 두께입니다 
+	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'long', // 선의 스타일 입니다
+	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	}); 
+	circle2.setMap(map); // 지도에 원을 표시합니다 
+	
+	var circle3 = new kakao.maps.Circle({
+	    center : new kakao.maps.LatLng(37.5541, 126.9111),  // 원의 중심좌표 입니다 
+	    radius: 1500, // 미터 단위의 원의 반지름입니다 
+	    strokeWeight: 2, // 선의 두께입니다 
+	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'long', // 선의 스타일 입니다
+	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	}); 
+	circle3.setMap(map); // 지도에 원을 표시합니다 
+	
+	var circle4 = new kakao.maps.Circle({
+	    center : new kakao.maps.LatLng(37.6233, 127.0647),  // 원의 중심좌표 입니다 
+	    radius: 1500, // 미터 단위의 원의 반지름입니다 
+	    strokeWeight: 2, // 선의 두께입니다 
+	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'long', // 선의 스타일 입니다
+	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	}); 
+	circle4.setMap(map); // 지도에 원을 표시합니다 
+	
+	var circle5 = new kakao.maps.Circle({
+	    center : new kakao.maps.LatLng(37.5836, 127.0003),  // 원의 중심좌표 입니다 
+	    radius: 1500, // 미터 단위의 원의 반지름입니다 
+	    strokeWeight: 2, // 선의 두께입니다 
+	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'long', // 선의 스타일 입니다
+	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	}); 
+	circle5.setMap(map); // 지도에 원을 표시합니다 
+	
+	
+	var mouseoverOption = { //다각형에 마우스오버 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+	    fillColor: '#EFFFED', // 채우기 색깔입니다
+	    fillOpacity: 0.8 // 채우기 불투명도 입니다        
+	};
+	var mouseoutOption = { // 다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+	    fillColor: '#A2FF99', // 채우기 색깔입니다 
+	    fillOpacity: 0.7 // 채우기 불투명도 입니다        
+	};
+	
+	// circle1에 대한 이벤트
+	// 다각형에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle, 'mouseover', function() { 
+	    // 다각형의 채우기 옵션을 변경합니다
+	    circle.setOptions(mouseoverOption);
+	
+	});   
+	kakao.maps.event.addListener(circle, 'mouseout', function() { 
+	    // 다각형의 채우기 옵션을 변경합니다
+	    circle.setOptions(mouseoutOption);
+	    
+	}); 
+	// 다각형에 마우스다운 이벤트를 등록합니다
+	var downCount = 0;
+	kakao.maps.event.addListener(circle, 'mousedown', function() { 
+	    var show_infoDiv = document.getElementById('show_info');
+	    
+	    show_infoDiv.innerHTML = '용산구의 자취방 정보입니다.<br><br>10평이하 평균매매가 : 1억6000~2억3000 <br><br>주변편의시설: 효창공원, 용산아이파크몰, 하나로마트 <br><br>주변 지하철역: 4호선 숙대입구역, 신용산역 1호선 남영역, 용산역 6호선: 효창공원앞역';
+	}); 
+	
+	// circle2에 대한 이벤트
+	// 다각형에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle2, 'mouseover', function() { 
+	    circle2.setOptions(mouseoverOption); // 다각형의 채우기 옵션을 변경합니다
+	});   
+	
+	kakao.maps.event.addListener(circle2, 'mouseout', function() { 
+	    circle2.setOptions(mouseoutOption);  // 다각형의 채우기 옵션을 변경합니다
+	}); 
+	
+	// 다각형에 마우스다운 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle2, 'mousedown', function() { 
+	    console.log(event.target.id);
+	    var show_infoDiv = document.getElementById('show_info');
+	    
+	    show_infoDiv.innerHTML = show_infoDiv.innerHTML = '관악구의 자취방 정보입니다.<br><br>10평이하 평균매매가 : 1억3000~2억3000 <br><br>주변편의시설: 롯데백화점, 한림대학교, 강남 성심병원<br><br>주변 지하철역: 2호선 서울대입구역, 2호선 낙성대역, 2호선 봉천역';
+	}); 
+	
+	// circle3에 대한 이벤트
+	// 다각형에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle3, 'mouseover', function() { 
+	    circle3.setOptions(mouseoverOption); // 다각형의 채우기 옵션을 변경합니다
+	});   
+	
+	kakao.maps.event.addListener(circle3, 'mouseout', function() { 
+	    circle3.setOptions(mouseoutOption);  // 다각형의 채우기 옵션을 변경합니다
+	}); 
+	
+	// 다각형에 마우스다운 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle3, 'mousedown', function() { 
+	    console.log(event.target.id);
+	    var show_infoDiv = document.getElementById('show_info');
+	    
+	    show_infoDiv.innerHTML = show_infoDiv.innerHTML = '마포구의 자취방 정보입니다.<br><br>10평이하 평균매매가 : 2억5000~4억4000 <br><br>주변편의시설: 마포 농수산물 시장, 홈플러스<br><br>주변 지하철역: 6호선 망원역 2호선 합정역 경의중앙선 가좌역 공항철도 디지털미디어시티역 ';
+	}); 
+	
+	// circle4에 대한 이벤트
+	// 다각형에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle4, 'mouseover', function() { 
+	    circle4.setOptions(mouseoverOption); // 다각형의 채우기 옵션을 변경합니다
+	});   
+	
+	kakao.maps.event.addListener(circle4, 'mouseout', function() { 
+	    circle4.setOptions(mouseoutOption);  // 다각형의 채우기 옵션을 변경합니다
+	}); 
+	
+	// 다각형에 마우스다운 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle4, 'mousedown', function() { 
+	    console.log(event.target.id);
+	    var show_infoDiv = document.getElementById('show_info');
+	    
+	    show_infoDiv.innerHTML = show_infoDiv.innerHTML = '<b>노원구</b>의 자취방 정보입니다.<br><br>10평이하 평균매매가 : 4억8000~5억7000 <br><br>주변편의시설: 롯데마트, 상계백병원, 도깨비시장, 경춘선숲길, 이마트 트레이더스, 원자력병원<br><br>주변 지하철역: 광운대역, 공릉역, 노원역, 석계역, 태릉입구역';
+	}); 
+	
+	// circle5에 대한 이벤트
+	// 다각형에 마우스오버 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle5, 'mouseover', function() { 
+	    circle5.setOptions(mouseoverOption); // 다각형의 채우기 옵션을 변경합니다
+	});   
+	
+	kakao.maps.event.addListener(circle5, 'mouseout', function() { 
+	    circle5.setOptions(mouseoutOption);  // 다각형의 채우기 옵션을 변경합니다
+	}); 
+	
+	// 다각형에 마우스다운 이벤트를 등록합니다
+	kakao.maps.event.addListener(circle5, 'mousedown', function() { 
+	    console.log(event.target.id);
+	    var show_infoDiv = document.getElementById('show_info');
+	    
+	    show_infoDiv.innerHTML = show_infoDiv.innerHTML = '종로구의 자취방 정보입니다.<br><br>10평이하 평균매매가 : 4억 <br><br>주변편의시설: 경복궁, 홍대문화의거리, 창경궁, 낙원동 아구찜거리, 탑골공원, 서울대학교 병원<br><br>주변 지하철역: 종로3가역, 경복궁역, 광화문역, 안국역, 동묘앞역, 혜화역, 서대문역';
+	}); 
+	
+	
+</script>
+</section>	
+</body>
+</html>

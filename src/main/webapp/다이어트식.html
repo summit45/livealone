@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>혼밥레시피공유</title>
+<script type="text/javascript" src="main_js.js"></script>
+<script>
+
+function showrow(){
+   let input=document.getElementById("level");
+   let selectlevel=input.options[input.selectedIndex].text;
+   let tbody=document.getElementById("tbody");
+   let string =tbody.getElementsByTagName("tr");
+   if (selectlevel=="ALL"){
+      for(let i=0;i<string.length;i++)
+         string[i].style.display="";}
+   else
+      for(let i=0;i<string.length;i++){
+         let level=string[i].getElementsByTagName("td")[1];
+         if(level){
+            if(level.innerHTML==selectlevel)
+               string[i].style.display="";
+            else
+               string[i].style.display="none";}
+         }
+      }
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&display=swap');
+@import url('main_css.css');
+
+figure,figcaption {text-align:center;
+font-weight:bold;}
+body{background-image: url('media/도트배경.png');}
+
+.table {
+   border-collapse: collapse;
+     margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 1500px;
+    box-shadow: 0 0 20px #513b3d;
+    border:1px none;
+    line-height: 25px;
+    
+    
+}
+.table td,.table th{   
+   padding:5px 0px;
+   
+}
+
+.table thead th {
+   background-color:#484146;
+   border: 1px none #A69188;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 3px solid #ffffff;
+    font-weight: bold;
+    font-size:1.2em;
+}
+.table tbody tr {
+    border-bottom: 1px none;
+    background-color: #E6E2D9;
+    border-bottom: 3px solid #ffffff;
+    font-size:1.2em;
+}
+
+.table tbody tr:nth-child(even){
+   background-color:#F9F9F3;
+}
+.table tbody tr:hover{
+   font-weight: bold;
+   }
+h1 {
+   font-weight: bold;
+   padding-left: 300px
+}
+.link{
+display:none;
+}
+#levels {
+margin:auto;
+}
+
+
+</style>
+</head>
+<body>
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+   <ul>
+      <li><a href="자취방_구하기.html">자취방 구하기</a></li>
+      <li><a href="자취물품.html">자취 물품</a></li>
+      <li>혼밥 레시피
+         <ul>
+            <li><a href="가정식.html">가정식</a></li>
+            <li><a href="다이어트식.html">다이어트 식</a></li>
+            <li><a href="간식.html">간식</a></li>
+            <li><a href="분식.html">분식</a></li>
+         </ul>
+      </li>
+      <li>게시판
+         <ul>
+            <li><a href="자유게시판.html">자유 게시판</a></li>
+            <li><a href="공지게시판.html">공지 게시판</a></li>
+         </ul>
+      </li>
+   </ul>
+</nav>
+<h1>🧂다이어트 식 레시피🥣</h1>
+<div id="levels" style="text-align:center">
+   <iframe name="youtube" width="1200" height="450" src="https://www.youtube.com/embed/o9Vj5gr3mj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<span>난이도 선택</span>
+      <select size=1 id="level" onchange="showrow()">
+         <option value="1">ALL</option>
+         <option value="2">⭐</option>
+         <option value="3">⭐⭐</option>
+         <option value="4">⭐⭐⭐</option>
+      </select>
+</div>
+<br><br>      
+<table border="1" class="table">
+   <thead>
+      <tr><th>메뉴명</th><th>난이도</th><th>재료</th><th>레시피</th></tr>
+   </thead>
+   <tbody id="tbody">
+      <tr><td>
+      <figure><a href="https://www.youtube.com/embed/o9Vj5gr3mj8" target="youtube">
+         <img src="media/연두부_샐러드.png" width="200" height="130">
+         <figcaption>연두부 샐러드</figcaption></a>
+      </figure></td><td>⭐⭐</td><td>연두부,어린잎채소,파프리카,양파<br>양념:간장,식초,설탕,다진마늘,참기름 1T씩<br>통깨 약간</td><td>1.연두부를 접시에 뒤집어서 올린다.
+      <br>2.연두부 주변에 어린잎채소를 올려준다.<br>3.양념장을 만든 후 양파와 파프리카를 다져넣고 연두부 위에 뿌려주면 완성</td></tr>
+      <tr><td>
+      <figure><a href="https://www.youtube.com/embed/cXc_BqJzHC4" target="youtube">
+         <img src="media/호박죽.png" width="200" height="130">
+         <figcaption>단호박죽</figcaption></a>
+      </figure></td><td>⭐</td><td>단호박1개.밥1공기(250g).물800ml. 소금1/2T.설탕2T.</td><td>
+1.단호박은 4등분해서 수저로 씨를 파줍니다.<br>2.전자렌지로 6분동안 돌린 후 껍질을 칼로 제거하고 토막내어 냄비에 넣습니다.
+<br>3.물 800ml를 넣고 밥 한공기를 넣고 곱게 갈아줍나다.<br>4.중약불에서 나무주걱으로 저어가며 6분 끓이면 완성<br>
+ㄴ기호에 맞게 소금,설탕으로 간을 맞추기</td></tr>
+      <tr onclick="changevideo()"><td>
+      <figure><a href="https://www.youtube.com/embed/L4o_zXIclCw" target="youtube">
+         <img src="media/오트밀죽.png" width="200" height="130">
+         <figcaption>오트밀 죽</figcaption></a>
+      </figure></td><td>⭐⭐⭐</td><td>저지방 우류 1.5컵,오트밀 1/2컵</td><td>1.우유와 오트밀을 냄비에 담는다<br>
+2.중약불로 5분간 끓이며 중간중간 저어준다<br>3.3분정도 방치하여 된죽 상태로 만든다.<br>4.기호에 따라 베리류나 견과류를 올리면 완성</td></tr>
+      <tr><td>
+      <figure><a href="https://www.youtube.com/embed/0MRhkYeZ8Ac" target="youtube">
+         <img src="media/밀푀유나베.png" width="200" height="130">
+         <figcaption>밀푀유나베</figcaption></a>
+      </figure></td><td>⭐⭐⭐</td><td>*육수:대파 2대(푸른대, 흰대 모두),다시마 3조각(없으면 멸치, 멸치도 없으면 생략),깐양파 1개<br
+      >주재료:알배추 1포기깻잎 1묶음샤브용 양지살 300g숙주나물 200g (반 봉지)<br>느타리버섯or 표고버섯 조금</td><td>1.물5컵과 육수재료를 모두 넣고 끓인다<br>2.알배추 1장,꺳잎2장,샤브용 양지1장,다시 알배추 1장 순서대로 포기를 만든다.<br>
+      3.각 포기를 3cm간격으로 자른뒤 냄비에 숙주나물과 함꼐 넣는다<br>4.가운데에 느타리 버섯이나 표고버섯을 올린 후 만들어둔 육수를 넣고 끓이면 완성</td><td class="link">"https://youtu.be/kebIbgw1zHE"</td></a></tr>
+   </tbody>
+</table>
+
+</body>
+</html>

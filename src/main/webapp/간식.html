@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>혼밥레시피공유</title>
+<script type="text/javascript" src="main_js.js"></script>
+<script>
+
+function showrow(){
+	let input=document.getElementById("level");
+	let selectlevel=input.options[input.selectedIndex].text;
+	let tbody=document.getElementById("tbody");
+	let string =tbody.getElementsByTagName("tr");
+	if (selectlevel=="ALL"){
+		for(let i=0;i<string.length;i++)
+			string[i].style.display="";}
+	else
+		for(let i=0;i<string.length;i++){
+			let level=string[i].getElementsByTagName("td")[1];
+			if(level){
+				if(level.innerHTML==selectlevel)
+					string[i].style.display="";
+				else
+					string[i].style.display="none";}
+			}
+		}
+
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&display=swap');
+@import url('main_css.css');
+figure,figcaption {text-align:center;}
+body{background-image: url('media/도트배경.png');}
+
+.table {
+	border-collapse: collapse;
+  	margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 1500px;
+    box-shadow: 0 0 20px #513b3d;
+    border:1px none;
+    
+    
+}
+.table td,.table th{	
+	padding:5px 0px;
+	
+}
+
+.table thead th {
+	background-color:#484146;
+	border: 1px none #A69188;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 3px solid #ffffff;
+    font-weight: bold;
+    font-size:1.2em;
+}
+.table tbody tr {
+    border-bottom: 1px none;
+    background-color: #E6E2D9;
+    border-bottom: 3px solid #ffffff;
+    font-size:1.2em;
+}
+
+.table tbody tr:nth-child(even){
+	background-color:#F9F9F3;
+}
+.table tbody tr:hover{
+	font-weight: bold;
+	}
+h1 {
+	font-weight: bold;
+	padding-left: 300px
+}
+#levels {
+margin:auto;
+}
+
+</style>
+</head>
+<body>
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<h1>🥪간식 레시피🍙</h1>
+<div id="levels" style="text-align:center">
+	<iframe name="youtube" width="1200" height="450" src="https://www.youtube.com/embed/JKZqaFpJHn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
+<span>난이도 선택</span>
+		<select size=1 id="level" onchange="showrow()">
+			<option value="1">ALL</option>
+			<option value="2">⭐</option>
+			<option value="3">⭐⭐</option>
+			<option value="4">⭐⭐⭐</option>
+		</select>
+</div>
+<br><br>		
+<table border="1" class="table">
+	<thead>
+		<tr><th>메뉴명</th><th>난이도</th><th>재료</th><th>레시피</th></tr>
+	</thead>
+	<tbody id="tbody">
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/3edKOhCLdGM" target="youtube">
+			<img src="media/고구마_맛탕.png" width="200" height="130">
+			<figcaption>고구마 맛탕</figcaption></a>
+		</figure></td><td>⭐⭐</td><td>고구마 중간크기 3,식용유,검은깨<br>소스 :설탕 5,식용유 2</td><td>1.고구마를 1.5cm두꼐로 자른 후 식용유를 두른 팬에서 중약불로 익힌다.
+		<br>2.익었다면 중불에서 노릇하게 튀긴 후 따로 보관한다.<br>3.튀기고 남은 식용유 2스푼 남기고 설탕을 넣은 뒤 약불에서 녹인다.<br>4.고구마를 넣고 빠르게 섞은 후 식힌다.<br>5.그릇에 담고 검은 깨를 뿌리면 완성.</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/BEDh3FEzOJI" target="youtube">
+			<img src="media/떡꼬치.png" width="200" height="130">
+			<figcaption>떡꼬치</figcaption></a>
+		</figure></td><td>⭐</td><td>떡,꼬치<br>양념:고추장 반스푼,다진마늘 반스푼설탕 1스푼<br>올리고당 2스푼 케첩 2스푼</td><td>
+1.떡을 꼬치에 끼우고 팬에 기름을 두른 후 약불에서 굽는다<br>2.구워진 떡에 양념을 바르고 약불에 구우면 완성</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/47OIcvpqxlo" target="youtube">
+			<img src="media/김치전.png" width="200" height="130">
+			<figcaption>김치전</figcaption></a>
+		</figure></td><td>⭐⭐⭐</td><td> 묵은지 1공기 양파 반개, 대파 부침가루 2국자, <br>물2국자, 설탕 1스푼, 김칫국물 1국자</td><td>1.재료를 모두 썰고 한곳에 섞는다.<br>
+2. 팬에 기름 두르고 반죽을 한두국자 넣고 넓게 편다.<br>3. 중불과 강불 사이에서 노릇하게 익혀주면 완성</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/5FKKDeqRay4" target="youtube">
+			<img src="media/전남친토스트.png" width="200" height="130">
+			<figcaption>전남친 토스트</figcaption></a>
+		</figure></td><td>⭐⭐⭐</td><td>식빵,크림치즈,블루베리잼</td><td>1.식빵을 굽는다.<br>2.식빵 위에 크림치즈를 바르고 그 위에 블루베리 잼을 얹는다.<br>
+		3.전자레인지에 10초 돌려주면 완성</td></tr>	
+	</tbody>
+</table>
+
+</body>
+</html>

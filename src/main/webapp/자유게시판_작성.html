@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시글 작성</title>
+<script type="text/javascript" src="main_js.js"></script>
+<link type="text/css" rel="stylesheet" href="main_css.css">
+<link type="text/css" rel="stylesheet" href="자유게시판_작성_css.css">
+</head>
+<body onload="printDate();">
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<script>
+function store() {
+    if(!window.localStorage||!window.sessionStorage){
+    	alert("localStorage 또는 sessionStorage를 지원하지 않습니다.");
+    	return;
+    }
+
+	let date=document.getElementById("date").innerHTML;
+	let memo=document.getElementById("memo").value;
+	let title=document.getElementById("title").value;
+	let name;
+    for (let a=0; a<sessionStorage.length; a++){
+    	name=sessionStorage.key(a);
+        let item_arr=sessionStorage.getItem(name).split(",");
+        if(item_arr.length==3) break;
+    }
+	let informs=sessionStorage.getItem(name).split(",");
+	let email=informs[1];
+	let interest=0;
+	
+    localStorage.setItem(date, [title, memo, name, interest, email]);
+    alert("저장되었습니다. 앞으로 1분간 다른 글을 작성할 수 없습니다.");
+    window.open("자유게시판.html", "viewwin");
+}
+function view() {
+	window.open("자유게시판.html", "viewwin");
+}
+
+function printDate() {
+	let span = document.getElementById("date");
+	let today = new Date();
+	let str = today.getFullYear() + "."
+			+ (today.getMonth()+1) + "."
+			+ today.getDate()+" ["
+			+ ('0'+today.getHours()).slice(-2)+":"
+			+ ('0'+today.getMinutes()).slice(-2)+"]";
+	span.innerHTML = str;
+}
+</script>
+<section>
+<form>
+<div id="memo_bar">오늘 <span id="date"></span>
+<lable style="margin-left: 3%; border-left: lightgray dotted 1px;">제목: <input id="title" type="text" value="" size=100></lable>
+<lable style="margin-left:3%; border-left: lightgray dotted 1px;"><input type="button" value="저장" onclick="store()">
+<input type="button" value="이전" onclick="view()"></lable></div>
+<textarea id="memo" cols="142" rows="30" placeholder="이야기를 남겨보세요!"></textarea>
+</form>
+</section>
+</body>
+</html>

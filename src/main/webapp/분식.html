@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>혼밥레시피공유</title>
+<script type="text/javascript" src="main_js.js"></script>
+<script>
+
+function showrow(){
+	let input=document.getElementById("level");
+	let selectlevel=input.options[input.selectedIndex].text;
+	let tbody=document.getElementById("tbody");
+	let string =tbody.getElementsByTagName("tr");
+	if (selectlevel=="ALL"){
+		for(let i=0;i<string.length;i++)
+			string[i].style.display="";}
+	else
+		for(let i=0;i<string.length;i++){
+			let level=string[i].getElementsByTagName("td")[1];
+			if(level){
+				if(level.innerHTML==selectlevel)
+					string[i].style.display="";
+				else
+					string[i].style.display="none";}
+			}
+		}
+
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gugi&display=swap');
+@import url('main_css.css');
+figure,figcaption {text-align:center;}
+body{background-color:#F2EADF;}
+
+.table {
+	border-collapse: collapse;
+  	margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 1500px;
+    box-shadow: 0 0 20px #513b3d;
+    border:1px none;
+    
+    
+}
+.table td,.table th{	
+	padding:5px 0px;
+	
+}
+
+.table thead th {
+	background-color:#484146;
+	border: 1px none #A69188;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 3px solid #ffffff;
+    font-weight: bold;
+    font-size:1.2em;
+}
+.table tbody tr {
+    border-bottom: 1px none;
+    background-color: #E6E2D9;
+    border-bottom: 3px solid #ffffff;
+    font-size:1.2em;
+}
+
+.table tbody tr:nth-child(even){
+	background-color:#F9F9F3;
+}
+.table tbody tr:hover{
+	font-weight: bold;
+	}
+h1 {
+	font-weight: bold;
+	padding-left: 300px
+}
+#levels {
+margin:auto;
+}
+
+</style>
+</head>
+<body>
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+ 	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" hight="60px" alt="메인화면으로 돌아가기">
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<h1>🧂분식 레시피🥣</h1>
+<div id="levels" style="text-align:center">
+	<iframe name="youtube" width="1200" height="450" src="https://www.youtube.com/embed/CQZyh-OszCo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<span>난이도 선택</span>
+		<select size=1 id="level" onchange="showrow()">
+			<option value="1">ALL</option>
+			<option value="2">⭐</option>
+			<option value="3">⭐⭐</option>
+			<option value="4">⭐⭐⭐</option>
+		</select>
+</div>
+<br><br>		
+<table border="1" class="table">
+	<thead>
+		<tr><th>메뉴명</th><th>난이도</th><th>재료</th><th>레시피</th></tr>
+	</thead>
+	<tbody id="tbody">
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/t4Es8mwdYlE" target="youtube">
+			<img src="media/떡볶이.png" width="200" height="130">
+			<figcaption>떡볶이</figcaption></a>
+		</figure></td><td>⭐⭐</td><td>재료: 떡국떡 3줌(300g 정도), 대파 약간,반숙 계란 1/2개
+<br>양념장 재료: 고추장 2스푼, 고춧가루 1스푼, 기름 2스푼, 물 2컵</td><td>1. 떡국떡을 물에 불려주세요<br>
+2. 양념장 재료를 넣고 떡국떡을 넣어 양념을 졸여 주세요<br>
+3. 양념이 졸고 떡국떡이 원하는 만큼 퍼졌을때 불을끄고<br>
+4. 그릇에 옮겨 대파와 계란을 올려주면 완성</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/mPCIaOBrGj8" target="youtube">
+			<img src="media/순두부라면.jpg" width="200" height="130">
+			<figcaption>순두부 라면</figcaption></a>
+		</figure></td><td>⭐</td><td>열라면 1개,순두부 1팩(1/2),계란1개,대파,후추가루</td><td>
+1. 평소 라면물보다 적게 물을 끓인다 (순두부에서 물나옴)<br>
+2. 건더기, 수프, 순두부 넣고 끓인다<br>
+3. 라면 넣고 익으면 후추 톡</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/5hIT2CcvvUc" target="youtube">
+			<img src="media/쫄면.JPG" width="200" height="130">
+			<figcaption>쫄면</figcaption></a>
+		</figure></td><td>⭐⭐⭐</td><td>
+쫄면사리, 콩나물, 양배추, 양파, 깻잎, 삶은 계란<br>
+[양념장]
+고추장 1스푼, 설탕 1스푼, 식초 1스푼, <br>돈가스 소스(스테이크 소스) 1스푼, 참기름 1스푼</td><td>1. 채소는 손질하여 준비해줍니다.<br>
+2. 쫄면 사리는 3분간 삶아준 뒤 찬물에 행궈줍니다.<br>
+3. 쫄면 위로 양념장, 채소를 올려 먹습니다.</td></tr>
+		<tr><td>
+		<figure><a href="https://www.youtube.com/embed/8-rDPxDAbfk" target="youtube">
+			<img src="media/참치주먹밥.jpg" width="200" height="130">
+			<figcaption>구운 참치 주먹밥</figcaption></a>
+		</figure></td><td>⭐⭐⭐</td><td>밥,참치,마요네즈,설탕,참기름,맛소금,간장</td><td>1.참치에 마요네즈와 설탕을 넣고 섞어준다.<br>2.밥에 참기를,맛소금을 넣어 간을 해준다.<br>
+		3.밥 안에 참치를 넣고 주먹밥을 만들어준다.<br>4.간장소스(간장+물+설탕)를 주먹밥 겉에 바른 후 팬에서 노릇노릇 구워주면 완성</td></tr>	
+	</tbody>
+</table>
+
+</body>
+</html>

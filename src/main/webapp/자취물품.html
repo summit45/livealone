@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="EUC-KR">
+<title>자취 물품</title>
+<link href="main_css.css" type="text/css" rel="stylesheet">
+<style>
+table{
+	margin: 20px;
+	width: 100%;
+    border: 1px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+}
+th, td{
+    border: 1px solid rgb(255, 255, 255);
+    padding: 10px;
+}
+td > img{
+ 	height: 100px;
+ 	width: 50%;
+ 	object-fit: contain;
+  	display: block;
+ 	margin: 0px auto;
+}
+.sideItem>li{
+	margin: 0px; 
+  	padding: 0px;
+  	border: #837774 solid 3px; 
+  	background: #AA9087; 
+  	display:inline-block; 
+  	width:15%; 
+  	height: 2.5em; 
+  	text-align: center; 
+  	line-height: 2.5em;
+  	color: white;
+  	cursor: pointer;
+}
+</style>
+
+<script>
+let objectArray = [
+	{
+		name: "냄비",
+		imgsrc : "media/냄비.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%83%84%EB%B9%84&bt=-1&frm=NVSCPRO",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%83%84%EB%B9%84&channel=user"	
+	},
+	{
+		name: "뒤집개",
+		imgsrc : "media/뒤집개.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%92%A4%EC%A7%91%EA%B0%9C&cat_id=&frm=NVSHATC",
+		a2: "https://www.coupang.com/vp/products/2803855?itemId=12974433&vendorItemId=3019855002&q=%EB%92%A4%EC%A7%91%EA%B0%9C&itemsCount=36&searchId=0d1ec10c2b554f7da958fd6a7ceb65f1&rank=1&isAddedCart=",	
+	},
+	{
+		name: "계량컵",
+		imgsrc : "media/계량컵.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EA%B3%84%EB%9F%89%EC%BB%B5&frm=NVSHATC&prevQuery=%EC%88%98%EC%A0%80",
+		a2: "https://www.coupang.com/vp/products/94086522?itemId=291231884&vendorItemId=71004703767&q=%EA%B3%84%EB%9F%89%EC%BB%B5&itemsCount=36&searchId=bc4e972a5fed47419c54ed8be2d57da8&rank=1&isAddedCart=",	
+	},
+	{
+		name: "수저",
+		imgsrc : "media/수저.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%88%98%EC%A0%80&frm=NVSHATC&prevQuery=%EB%92%A4%EC%A7%91%EA%B0%9C",
+		a2: "https://www.coupang.com/np/search?component=&q=%EC%88%98%EC%A0%80&channel=user",	
+	},
+	
+	{
+		name: "옷걸이",
+		imgsrc : "media/옷걸이.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%98%B7%EA%B1%B8%EC%9D%B4&cat_id=&frm=NVSHATC",
+		a2: "https://www.coupang.com/np/search?component=&q=%EC%98%B7%EA%B1%B8%EC%9D%B4&channel=user",
+	},
+	{
+		name: "빗자루",
+		imgsrc : "media/빗자루.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%B9%97%EC%9E%90%EB%A3%A8&frm=NVSHATC&prevQuery=%EC%98%B7%EA%B1%B8%EC%9D%B4",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%B9%97%EC%9E%90%EB%A3%A8&channel=user",	
+	},
+	{
+		name: "비상약",
+		imgsrc : "media/비상약.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%B9%84%EC%83%81%EC%95%BD&frm=NVSHATC&prevQuery=%EC%97%90%ED%94%84%ED%82%AC%EB%9D%BC",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%B9%84%EC%83%81%EC%95%BD&channel=user",	
+	},
+	{
+		name: "에프킬라",
+		imgsrc : "media/에프킬라.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%97%90%ED%94%84%ED%82%AC%EB%9D%BC&frm=NVSHATC&prevQuery=%EB%B9%97%EC%9E%90%EB%A3%A8",
+		a2: "https://www.coupang.com/np/search?component=&q=%EC%97%90%ED%94%84%ED%82%AC%EB%9D%BC&channel=user",	
+	},
+	{
+		name: "휴지",
+		imgsrc : "media/휴지.PNG",
+		a1: "https://smartstore.naver.com/friend83/products/5368884843?n_media=11068&n_query=%EB%91%90%EB%A3%A8%EB%A7%88%EB%A6%AC%ED%9C%B4%EC%A7%80&n_rank=3&n_ad_group=grp-a001-02-000000024477069&n_ad=nad-a001-02-000000162505184&n_campaign_type=2&n_mall_id=ncp_1o3wgt_01&n_mall_pid=5368884843&n_ad_group_type=2&NaPm=ct%3Dl2oy1e9k%7Cci%3D0Ee0001V271wWzX4F1oi%7Ctr%3Dpla%7Chk%3Da7392f1b0c1c500f57ac8efbd56fa65e55520e98",
+		a2: "https://www.coupang.com/vp/products/1076174096?itemId=2026542690&vendorItemId=70026119072&sourceType=srp_top_banner_ads&clickEventId=737d84a7-ab11-4ff3-aea0-21ade986a972&korePlacement=19&templateId=1163&isAddedCart=",	
+	},
+	{
+		name: "칫솔",
+		imgsrc : "media/칫솔.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%B9%AB%EC%86%94&frm=NVSHATC&prevQuery=%EC%B9%AB%EC%86%94",
+		a2: "https://www.coupang.com/vp/products/1847088562?itemId=3139881897&vendorItemId=71127518475&pickType=COU_PICK&q=%EC%B9%AB%EC%86%94&itemsCount=36&searchId=61b3c6f8ab2f4982b3f7b3fa109ead48&rank=1&isAddedCart=",	
+	},
+	{
+		name: "수건",
+		imgsrc : "media/수건.png",
+		a1: "https://smartstore.naver.com/towelstory/products/4778044204?n_media=11068&n_query=%EC%88%98%EA%B1%B4&n_rank=3&n_ad_group=grp-a001-02-000000026773576&n_ad=nad-a001-02-000000180208452&n_campaign_type=2&n_mall_id=towelstory&n_mall_pid=4778044204&n_ad_group_type=2&NaPm=ct%3Dl2oy2rnc%7Cci%3D0zy0002V271ws5DglKZo%7Ctr%3Dpla%7Chk%3Dee1a7c0dcf646412296bbc98f873acc6f018293a",
+		a2: "https://www.coupang.com/np/search?component=&q=%EC%88%98%EA%B1%B4&channel=user",	
+	},
+	{
+		name: "샴푸",
+		imgsrc : "media/샴푸.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%83%B4%ED%91%B8&frm=NVSHATC&prevQuery=%EC%88%98%EA%B1%B4",
+		a2: "https://www.coupang.com/np/search?component=&q=%EC%83%B4%ED%91%B8&channel=user",	
+	},
+	{
+		name: "매트리스",
+		imgsrc : "media/매트리스.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&frm=NVSHATC&prevQuery=%EC%9D%B4%EB%B6%88",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4&channel=user",	
+	},
+	{
+		name: "이불",
+		imgsrc : "media/이불.PNG",
+		a1: "https://brand.naver.com/amante/products/6035525603?n_media=11068&n_query=%EC%9D%B4%EB%B6%88&n_rank=3&n_ad_group=grp-a001-02-000000014370445&n_ad=nad-a001-02-000000170517258&n_campaign_type=2&n_mall_id=beddingland&n_mall_pid=6035525603&n_ad_group_type=2&NaPm=ct%3Dl2oyeksw%7Cci%3D0zG0003w2B1wun0fsfld%7Ctr%3Dpla%7Chk%3D0e2b79712b44634630335c3ba1b46240d6590517",
+		a2: "https://www.coupang.com/vp/products/6415369423?itemId=13776592934&vendorItemId=81027118552&sourceType=srp_product_ads&clickEventId=7584a61f-34af-4f20-8d4b-397cdecc0056&korePlacement=15&koreSubPlacement=1&q=%EC%9D%B4%EB%B6%88&itemsCount=36&searchId=4abf1b2c9dbe4fe39ee8792b1e641cdb&rank=0&isAddedCart=",	
+	},
+	{
+		name: "베개",
+		imgsrc : "media/베개.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%B2%A0%EA%B0%9C&frm=NVSHATC&prevQuery=%EC%A0%84%EC%8B%A0%EA%B1%B0%EC%9A%B8",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%B2%A0%EA%B0%9C&channel=user",	
+	},
+	{
+		name: "전신거울",
+		imgsrc : "media/전신거울.jpg",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%A0%84%EC%8B%A0%EA%B1%B0%EC%9A%B8&frm=NVSHATC&prevQuery=%EC%83%B4%ED%91%B8",
+		a2: "https://www.coupang.com/vp/products/6292206209?itemId=12969101731&vendorItemId=80233131099&sourceType=srp_product_ads&clickEventId=119b6063-7342-42d0-8bbe-4f32b4981261&korePlacement=15&koreSubPlacement=1&q=%EC%A0%84%EC%8B%A0%EA%B1%B0%EC%9A%B8&itemsCount=36&searchId=e485e695da5a4261a1baec264098e503&rank=0&isAddedCart=",	
+	},
+	{
+		name: "전기포트",
+		imgsrc : "media/전기포트.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EC%A0%84%EA%B8%B0%ED%8F%AC%ED%8A%B8&frm=NVSHATC&prevQuery=%ED%97%A4%EC%96%B4%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%96%B4",
+		a2: "https://www.coupang.com/np/search?component=&q=%EC%A0%84%EA%B8%B0%ED%8F%AC%ED%8A%B8&channel=user",	
+	},
+	{
+		name: "헤어드라이어",
+		imgsrc : "media/헤어드라이어.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%ED%97%A4%EC%96%B4%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%96%B4&frm=NVSHATC&prevQuery=%EB%A9%80%ED%8B%B0%ED%83%AD",
+		a2: "https://www.coupang.com/np/search?component=&q=%ED%97%A4%EC%96%B4%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%96%B4&channel=user",	
+	},
+	{
+		name: "멀티탭",
+		imgsrc : "media/멀티탭.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%A9%80%ED%8B%B0%ED%83%AD&frm=NVSHATC&prevQuery=%EA%B3%B5%EC%9C%A0%EA%B8%B0",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%A9%80%ED%8B%B0%ED%83%AD&channel=user",	
+	},
+	{
+		name: "공유기",
+		imgsrc : "media/공유기.PNG",
+		a1: "https://search.shopping.naver.com/search/all?query=%EA%B3%B5%EC%9C%A0%EA%B8%B0&frm=NVSHATC&prevQuery=%EB%A7%A4%ED%8A%B8%EB%A6%AC%EC%8A%A4",
+		a2: "https://www.coupang.com/np/search?component=&q=%EA%B3%B5%EC%9C%A0%EA%B8%B0&channel=user",	
+	},
+	{
+		name: "물",
+		imgsrc : "media/물.png",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%AC%BC&frm=NVSHATC&prevQuery=%ED%96%87%EB%B0%98",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%AC%BC&channel=user",	
+	},
+	{
+		name: "햇반",
+		imgsrc : "media/햇반.jpg",
+		a1: "https://search.shopping.naver.com/search/all?query=%ED%96%87%EB%B0%98&frm=NVSHATC&prevQuery=%EC%A0%84%EA%B8%B0%ED%8F%AC%ED%8A%B8",
+		a2: "https://www.coupang.com/np/search?component=&q=%ED%96%87%EB%B0%98&channel=user",	
+	},
+	{
+		name: "라면",
+		imgsrc : "media/라면.png",
+		a1: "https://search.shopping.naver.com/search/all?query=%EB%9D%BC%EB%A9%B4&frm=NVSHATC&prevQuery=%EB%AC%BC",
+		a2: "https://www.coupang.com/np/search?component=&q=%EB%9D%BC%EB%A9%B4&channel=user",	
+	},
+	{
+		name: "김치",
+		imgsrc : "media/김치.png",
+		a1: "https://search.shopping.naver.com/search/all?query=%EA%B9%80%EC%B9%98&frm=NVSHATC&prevQuery=%EB%9D%BC%EB%A9%B4",
+		a2: "https://www.coupang.com/np/search?component=&q=%EA%B9%80%EC%B9%98&channel=user",	
+	},
+]
+
+function setCookie(name, value, day){
+    let expire = new Date();
+    expire.setDate(expire.getDate() + day);
+    let cookies = name + '=' + escape(value) + ((day==null)?"":(";expires=" + expire.toUTCString()));
+    document.cookie = cookies;
+    }
+
+ for(let t=0;t<sessionStorage.length;t++){
+    let keyname=sessionStorage.key(t);
+    let link;
+    let value=sessionStorage.getItem(keyname);
+    if (!isNaN(value))
+       for(let i=0;i<objectArray.length;i++){
+          if(objectArray[i].name==keyname){
+             link=objectArray[i].a1;
+             setCookie(keyname,link,3);
+             break;}
+          else
+             continue;   
+          }
+    else
+       continue;}
+
+
+let index=0;
+let timerID;
+function start_mix(){
+	let liked = document.getElementById("liked");
+	for(let i=0; i<4*6; i++){
+		let val = sessionStorage.getItem(objectArray[i].name);
+		if(val == null) continue; // 없다면
+		console.log(objectArray[i].name);// 있는 경우 이름 출력
+		index = i;
+		liked.innerHTML="<figure><img src='"+objectArray[i].imgsrc+" class='imgs''width='180px' height='180px'><figcaption>"+objectArray[i].name+"</figcaption></figure>";
+		startTimer(2000);
+		break;
+	}
+}
+function startTimer(time){
+	timerID = setInterval("mix()",time); //2초 주기로 mix()가 호출되도록 타이머 작동
+}
+function mix(){
+	let liked = document.getElementById("liked");
+	index++;
+	while(true){
+		if(index >= 23)
+			index=0;
+		let val = sessionStorage.getItem(objectArray[index].name);
+		if(val != null){
+			console.log(objectArray[index].name);
+			break;
+		}
+		index++;
+	}
+	liked.innerHTML="<figure><img src='"+objectArray[index].imgsrc+"' width='180px' height='180px'><figcaption>"+objectArray[index].name+"</figcaption></figure>";
+	
+}
+
+function click_sideitem(e){
+	// e.target이 클릭된 아이템
+	let item_id = e.target.id;
+	if (item_id == "cooking"){
+		let tag1_1 = document.getElementById("t1_item");
+		tag1_1.innerHTML = objectArray[0].name;
+		let tag1_2 = document.getElementById("t1_img");
+		tag1_2.src = objectArray[0].imgsrc;
+		let tag1_3 = document.getElementById("t1_a1");
+		tag1_3.href = objectArray[0].a1;
+		let tag1_4 = document.getElementById("t1_a2");
+		tag1_4.href = objectArray[0].a2;
+		
+		let tag2_1 = document.getElementById("t2_item");
+		tag2_1.innerHTML = objectArray[1].name;
+		let tag2_2 = document.getElementById("t2_img");
+		tag2_2.src = objectArray[1].imgsrc;
+		let tag2_3 = document.getElementById("t2_a1");
+		tag2_3.href = objectArray[1].a1;
+		let tag2_4 = document.getElementById("t2_a2");
+		tag2_4.href = objectArray[1].a2;
+		
+		let tag3_1 = document.getElementById("t3_item");
+		tag3_1.innerHTML = objectArray[2].name;
+		let tag3_2 = document.getElementById("t3_img");
+		tag3_2.src = objectArray[2].imgsrc;
+		let tag3_3 = document.getElementById("t3_a1");
+		tag3_3.href = objectArray[2].a1;
+		let tag3_4 = document.getElementById("t3_a2");
+		tag3_4.href = objectArray[2].a2;
+		
+		let tag4_1 = document.getElementById("t4_item");
+		tag4_1.innerHTML = objectArray[3].name;
+		let tag4_2 = document.getElementById("t4_img");
+		tag4_2.src = objectArray[3].imgsrc;
+		let tag4_3 = document.getElementById("t4_a1");
+		tag4_3.href = objectArray[3].a1;
+		let tag4_4 = document.getElementById("t4_a2");
+		tag4_4.href = objectArray[3].a2;
+	}
+	else if (item_id == "living"){
+		let tag1_1 = document.getElementById("t1_item");
+		tag1_1.innerHTML = objectArray[4].name;
+		let tag1_2 = document.getElementById("t1_img");
+		tag1_2.src = objectArray[4].imgsrc;
+		let tag1_3 = document.getElementById("t1_a1");
+		tag1_3.href = objectArray[4].a1;
+		let tag1_4 = document.getElementById("t1_a2");
+		tag1_4.href = objectArray[4].a2;
+		
+		let tag2_1 = document.getElementById("t2_item");
+		tag2_1.innerHTML = objectArray[5].name;
+		let tag2_2 = document.getElementById("t2_img");
+		tag2_2.src = objectArray[5].imgsrc;
+		let tag2_3 = document.getElementById("t2_a1");
+		tag2_3.href = objectArray[5].a1;
+		let tag2_4 = document.getElementById("t2_a2");
+		tag2_4.href = objectArray[5].a2;
+		
+		let tag3_1 = document.getElementById("t3_item");
+		tag3_1.innerHTML = objectArray[6].name;
+		let tag3_2 = document.getElementById("t3_img");
+		tag3_2.src = objectArray[6].imgsrc;
+		let tag3_3 = document.getElementById("t3_a1");
+		tag3_3.href = objectArray[6].a1;
+		let tag3_4 = document.getElementById("t3_a2");
+		tag3_4.href = objectArray[6].a2;
+		
+		let tag4_1 = document.getElementById("t4_item");
+		tag4_1.innerHTML = objectArray[7].name;
+		let tag4_2 = document.getElementById("t4_img");
+		tag4_2.src = objectArray[7].imgsrc;
+		let tag4_3 = document.getElementById("t4_a1");
+		tag4_3.href = objectArray[7].a1;
+		let tag4_4 = document.getElementById("t4_a2");
+		tag4_4.href = objectArray[7].a2;
+	}
+	else if (item_id == "bathing"){
+		let tag1_1 = document.getElementById("t1_item");
+		tag1_1.innerHTML = objectArray[8].name;
+		let tag1_2 = document.getElementById("t1_img");
+		tag1_2.src = objectArray[8].imgsrc;
+		let tag1_3 = document.getElementById("t1_a1");
+		tag1_3.href = objectArray[8].a1;
+		let tag1_4 = document.getElementById("t1_a2");
+		tag1_4.href = objectArray[8].a2;
+		
+		let tag2_1 = document.getElementById("t2_item");
+		tag2_1.innerHTML = objectArray[9].name;
+		let tag2_2 = document.getElementById("t2_img");
+		tag2_2.src = objectArray[9].imgsrc;
+		let tag2_3 = document.getElementById("t2_a1");
+		tag2_3.href = objectArray[9].a1;
+		let tag2_4 = document.getElementById("t2_a2");
+		tag2_4.href = objectArray[9].a2;
+		
+		let tag3_1 = document.getElementById("t3_item");
+		tag3_1.innerHTML = objectArray[10].name;
+		let tag3_2 = document.getElementById("t3_img");
+		tag3_2.src = objectArray[10].imgsrc;
+		let tag3_3 = document.getElementById("t3_a1");
+		tag3_3.href = objectArray[10].a1;
+		let tag3_4 = document.getElementById("t3_a2");
+		tag3_4.href = objectArray[10].a2;
+		
+		let tag4_1 = document.getElementById("t4_item");
+		tag4_1.innerHTML = objectArray[11].name;
+		let tag4_2 = document.getElementById("t4_img");
+		tag4_2.src = objectArray[11].imgsrc;
+		let tag4_3 = document.getElementById("t4_a1");
+		tag4_3.href = objectArray[11].a1;
+		let tag4_4 = document.getElementById("t4_a2");
+		tag4_4.href = objectArray[11].a2;
+	}
+	else if (item_id == "furniture"){
+		let tag1_1 = document.getElementById("t1_item");
+		tag1_1.innerHTML = objectArray[12].name;
+		let tag1_2 = document.getElementById("t1_img");
+		tag1_2.src = objectArray[12].imgsrc;
+		let tag1_3 = document.getElementById("t1_a1");
+		tag1_3.href = objectArray[12].a1;
+		let tag1_4 = document.getElementById("t1_a2");
+		tag1_4.href = objectArray[12].a2;
+		
+		let tag2_1 = document.getElementById("t2_item");
+		tag2_1.innerHTML = objectArray[13].name;
+		let tag2_2 = document.getElementById("t2_img");
+		tag2_2.src = objectArray[13].imgsrc;
+		let tag2_3 = document.getElementById("t2_a1");
+		tag2_3.href = objectArray[13].a1;
+		let tag2_4 = document.getElementById("t2_a2");
+		tag2_4.href = objectArray[13].a2;
+		
+		let tag3_1 = document.getElementById("t3_item");
+		tag3_1.innerHTML = objectArray[14].name;
+		let tag3_2 = document.getElementById("t3_img");
+		tag3_2.src = objectArray[14].imgsrc;
+		let tag3_3 = document.getElementById("t3_a1");
+		tag3_3.href = objectArray[14].a1;
+		let tag3_4 = document.getElementById("t3_a2");
+		tag3_4.href = objectArray[14].a2;
+		
+		let tag4_1 = document.getElementById("t4_item");
+		tag4_1.innerHTML = objectArray[15].name;
+		let tag4_2 = document.getElementById("t4_img");
+		tag4_2.src = objectArray[15].imgsrc;
+		let tag4_3 = document.getElementById("t4_a1");
+		tag4_3.href = objectArray[15].a1;
+		let tag4_4 = document.getElementById("t4_a2");
+		tag4_4.href = objectArray[15].a2;
+	}
+	else if (item_id == "electronics"){
+		let tag1_1 = document.getElementById("t1_item");
+		tag1_1.innerHTML = objectArray[16].name;
+		let tag1_2 = document.getElementById("t1_img");
+		tag1_2.src = objectArray[16].imgsrc;
+		let tag1_3 = document.getElementById("t1_a1");
+		tag1_3.href = objectArray[16].a1;
+		let tag1_4 = document.getElementById("t1_a2");
+		tag1_4.href = objectArray[16].a2;
+		
+		let tag2_1 = document.getElementById("t2_item");
+		tag2_1.innerHTML = objectArray[17].name;
+		let tag2_2 = document.getElementById("t2_img");
+		tag2_2.src = objectArray[17].imgsrc;
+		let tag2_3 = document.getElementById("t2_a1");
+		tag2_3.href = objectArray[17].a1;
+		let tag2_4 = document.getElementById("t2_a2");
+		tag2_4.href = objectArray[17].a2;
+		
+		let tag3_1 = document.getElementById("t3_item");
+		tag3_1.innerHTML = objectArray[18].name;
+		let tag3_2 = document.getElementById("t3_img");
+		tag3_2.src = objectArray[18].imgsrc;
+		let tag3_3 = document.getElementById("t3_a1");
+		tag3_3.href = objectArray[18].a1;
+		let tag3_4 = document.getElementById("t3_a2");
+		tag3_4.href = objectArray[18].a2;
+		
+		let tag4_1 = document.getElementById("t4_item");
+		tag4_1.innerHTML = objectArray[19].name;
+		let tag4_2 = document.getElementById("t4_img");
+		tag4_2.src = objectArray[19].imgsrc;
+		let tag4_3 = document.getElementById("t4_a1");
+		tag4_3.href = objectArray[19].a1;
+		let tag4_4 = document.getElementById("t4_a2");
+		tag4_4.href = objectArray[19].a2;
+	}
+	else if (item_id == "foods"){
+		let tag1_1 = document.getElementById("t1_item");
+		tag1_1.innerHTML = objectArray[20].name;
+		let tag1_2 = document.getElementById("t1_img");
+		tag1_2.src = objectArray[20].imgsrc;
+		let tag1_3 = document.getElementById("t1_a1");
+		tag1_3.href = objectArray[20].a1;
+		let tag1_4 = document.getElementById("t1_a2");
+		tag1_4.href = objectArray[20].a2;
+		
+		let tag2_1 = document.getElementById("t2_item");
+		tag2_1.innerHTML = objectArray[21].name;
+		let tag2_2 = document.getElementById("t2_img");
+		tag2_2.src = objectArray[21].imgsrc;
+		let tag2_3 = document.getElementById("t2_a1");
+		tag2_3.href = objectArray[21].a1;
+		let tag2_4 = document.getElementById("t2_a2");
+		tag2_4.href = objectArray[21].a2;
+		
+		let tag3_1 = document.getElementById("t3_item");
+		tag3_1.innerHTML = objectArray[22].name;
+		let tag3_2 = document.getElementById("t3_img");
+		tag3_2.src = objectArray[22].imgsrc;
+		let tag3_3 = document.getElementById("t3_a1");
+		tag3_3.href = objectArray[22].a1;
+		let tag3_4 = document.getElementById("t3_a2");
+		tag3_4.href = objectArray[22].a2;
+		
+		let tag4_1 = document.getElementById("t4_item");
+		tag4_1.innerHTML = objectArray[23].name;
+		let tag4_2 = document.getElementById("t4_img");
+		tag4_2.src = objectArray[23].imgsrc;
+		let tag4_3 = document.getElementById("t4_a1");
+		tag4_3.href = objectArray[23].a1;
+		let tag4_4 = document.getElementById("t4_a2");
+		tag4_4.href = objectArray[23].a2;
+	}
+}
+
+function click_like(e){
+	let item_id = e.target.id;
+	new_item_id = item_id.substr(0,3);
+	new_item_id += "item"; // 새 이름
+	let item_name = document.getElementById(new_item_id); // 태그
+	
+	new_item_count = item_id.substr(0,3) + "count";
+	item_count = document.getElementById(new_item_count);
+	
+	for(let i=0; i<4*6; i++){
+		if(item_name.innerHTML == objectArray[i].name){	
+			if(!window.sessionStorage){
+				alert("세션 스토리지를 지원하지 않습니다.");
+			}
+			sessionStorage.setItem(objectArray[i].name, item_count.value);
+			item_count.value="";
+			if(timerID == null) {
+				console.log("timernull");
+				start_mix();
+			}
+			break;
+		}
+	}
+}
+</script>
+</head>
+
+<body onload="start_mix();">
+
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+ 	<div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;">
+		<a href="main.html" style="cursor: pointer;">
+		<img src="media/홈_아이콘.png" width="60px" height="60px" alt="메인화면으로 돌아가기" >
+		</a>
+	</div>
+ 	<div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;">
+ 		<h2>혼자서도 잘해요</h2>
+ 	</div>
+ 	<div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+	<ul>
+		<li><a href="자취방_구하기.html">자취방 구하기</a></li>
+		<li><a href="자취물품.html">자취 물품</a></li>
+		<li>혼밥 레시피
+			<ul>
+				<li><a href="가정식.html">가정식</a></li>
+				<li><a href="다이어트식.html">다이어트 식</a></li>
+				<li><a href="간식.html">간식</a></li>
+				<li><a href="분식.html">분식</a></li>
+			</ul>
+		</li>
+		<li>게시판
+			<ul>
+				<li><a href="자유게시판.html">자유 게시판</a></li>
+				<li><a href="공지게시판.html">공지 게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<!-- 광고 배너 -->
+<section>
+	<div class="thingsList" style="margin:auto; margin-top:10px; text-align:center">
+		<h3>구매할 자취 물품 리스트</h3>
+		<div id="liked" style="font-size: 18px;"></div>
+	</div>
+</section>
+
+<!-- html table 만들기 -->
+<section>
+	<ul class="sideItem">
+		<li id="cooking" onclick="click_sideitem(event)">주방 용품</li>
+		<li id="living" onclick="click_sideitem(event)">생활 용품</li>
+		<li id="bathing" onclick="click_sideitem(event)">욕실 용품</li>
+		<li id="furniture" onclick="click_sideitem(event)">가구, 페브릭</li>
+		<li id="electronics" onclick="click_sideitem(event)">전자 제품</li>
+		<li id="foods" onclick="click_sideitem(event)">필수식재료</li>
+	</ul>
+	
+	<table class="images">
+		<thead>
+			<tr>
+				<th>용품</th>
+				<th>이미지</th>
+				<th>링크</th>
+				<th>장바구니</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="t1">
+				<td id="t1_item">냄비</td>
+				<td><img id="t1_img" src="media/냄비.PNG" alt="사진 로딩중"></td>
+				<td><a id="t1_a1" href="https://search.shopping.naver.com/search/all?query=%EB%83%84%EB%B9%84&bt=-1&frm=NVSCPRO" target="_blank">네이버쇼핑</a><br><a id="t1_a2" href="https://www.coupang.com/np/search?component=&q=%EB%83%84%EB%B9%84&channel=user" target="_blank">쿠팡</a></td>
+				<td><input id="t1_count" type="text" /><input type="button" value="관심" onclick="click_like(event)" id="t1_like"/></td>
+			</tr>
+			<tr id="t2">
+				<td id="t2_item">뒤집개</td>
+				<td><img id="t2_img" src="media/뒤집개.PNG" alt="사진 로딩중"></td>
+				<td><a id="t2_a1" href="https://search.shopping.naver.com/search/all?query=%EB%92%A4%EC%A7%91%EA%B0%9C&cat_id=&frm=NVSHATC" target="_blank">네이버쇼핑</a><br><a id="t2_a2" href="https://www.coupang.com/vp/products/2803855?itemId=12974433&vendorItemId=3019855002&q=%EB%92%A4%EC%A7%91%EA%B0%9C&itemsCount=36&searchId=0d1ec10c2b554f7da958fd6a7ceb65f1&rank=1&isAddedCart=" target="_blank">쿠팡</a></td>
+				<td><input id="t2_count" type="text" /><input type="button" value="관심" onclick="click_like(event)" id="t2_like"/></td>
+			</tr>
+			<tr id="t3">
+				<td id="t3_item">계량컵</td>
+				<td><img id="t3_img" src="media/계량컵.PNG" alt="사진 로딩중"></td>
+				<td><a id="t3_a1" href="https://search.shopping.naver.com/search/all?query=%EA%B3%84%EB%9F%89%EC%BB%B5&frm=NVSHATC&prevQuery=%EC%88%98%EC%A0%80" target="_blank">네이버쇼핑</a><br><a id="t3_a2" href="https://www.coupang.com/vp/products/94086522?itemId=291231884&vendorItemId=71004703767&q=%EA%B3%84%EB%9F%89%EC%BB%B5&itemsCount=36&searchId=bc4e972a5fed47419c54ed8be2d57da8&rank=1&isAddedCart=" target="_blank">쿠팡</a></td>
+				<td><input id="t3_count" type="text" /><input type="button" value="관심" onclick="click_like(event)" id="t3_like"/></td>
+			</tr>
+			<tr id="t4">
+				<td id="t4_item">수저</td>
+				<td><img id="t4_img" src="media/수저.PNG" alt="사진 로딩중"></td>
+				<td><a id="t4_a1" href="https://search.shopping.naver.com/search/all?query=%EC%88%98%EC%A0%80&frm=NVSHATC&prevQuery=%EB%92%A4%EC%A7%91%EA%B0%9C" target="_blank">네이버쇼핑</a><br><a id="t4_a2" href="https://www.coupang.com/np/search?component=&q=%EC%88%98%EC%A0%80&channel=user" target="_blank">쿠팡</a></td>
+				<td><input id="t4_count" type="text" /><input type="button" value="관심" onclick="click_like(event)" id="t4_like"/></td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+</body>
+</html>

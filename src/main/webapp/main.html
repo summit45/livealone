@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인화면</title>
+<script type="text/javascript" src="main_js.js"></script>
+<script type="text/javascript" src="날씨_js.js"></script>
+<link type="text/css" rel="stylesheet" href="main_css.css">
+<script>
+window.addEventListener("load", function(){
+   if(!sessionStorage){
+      alert('sessionStorage를 지원하지 않습니다.');
+       return;
+   }
+   else
+      if(sessionStorage.key(0)!=null){
+         start_mix();
+         loadCoord();
+         let key;
+         for (let a=0; a<sessionStorage.length; a++){
+            key=sessionStorage.key(a);
+            let item_arr=sessionStorage.getItem(key).split(",");
+            if(item_arr.length==3)
+               break;
+         }
+         show_inform(key);
+      }
+      else{
+         start_mix();
+         getWeather(37.568, 126.977);
+      }
+});
+
+let slideIndex = 0;
+window.addEventListener('load',showSlides);
+function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("slides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+           slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 4000); // 4초마다 변경
+    }
+    
+function getCookie(name) {
+    let pairs=document.cookie.split(";");
+    for(let i=0;i<pairs.length;i++){
+       let pair=pairs[i].trim();
+       let unit=pair.split("=");
+       if (unit[0]==name)
+          return unescape(unit[1]);
+    }
+    return null;}
+    
+window.addEventListener('load',function(){
+	let num=Math.floor(Math.random()*sessionStorage.length);
+	let keyname=sessionStorage.key(num);
+	let value=sessionStorage.getItem(keyname);
+	if (!isNaN(value)){
+   		let link=getCookie(keyname);
+   	if(keyname!=null){
+      	document.getElementById("userLink").href=link;
+      	userImg.src="media/"+keyname+".PNG";}
+	}
+	else{
+   		userLink.href="https://www.cesco.co.kr/Cesco/default.aspx";
+   		document.getElementById("userImg").src= "media/세스코.jpg";
+   	}
+});
+</script>
+</head>
+<style>
+
+.slides {display: none;}
+.slides > img {vertical-align: middle; z-index:-3;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.advertisement {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+</style>
+
+<body onload="best();">
+<header style="background: #184D47; margin: 0px; padding: 0px;">
+ <div style="padding-left: 1%; padding-top: 1%; display:inline-block; width: 24%;"><a onclick="window.location.reload();" style="cursor: pointer;"><img src="media/홈_아이콘.png" width="60px" hight="60px" alt="새로고침"></a></div>
+ <div style="text-align: center; display:inline-block; width: 50%; color:white; font: 50px 'Do Hyeon', sans-serif; padding: 0px;"><h2>혼자서도 잘해요</h2></div>
+ <div style="display:inline-block; width: 26%"></div>
+</header>
+<nav class="menu">
+   <ul>
+      <li><a href="자취방_구하기.html">자취방 구하기</a></li>
+      <li><a href="자취물품.html">자취 물품</a></li>
+      <li>혼밥 레시피
+         <ul>
+            <li><a href="가정식.html">가정식</a></li>
+            <li><a href="다이어트식.html">다이어트 식</a></li>
+            <li><a href="간식.html">간식</a></li>
+            <li><a href="분식.html">분식</a></li>
+         </ul>
+      </li>
+      <li>게시판
+         <ul>
+            <li><a href="자유게시판.html">자유 게시판</a></li>
+            <li><a href="공지게시판.html">공지 게시판</a></li>
+         </ul>
+      </li>
+   </ul>
+</nav>
+<article>  <!--광고배너-->
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+   
+<div class="slideshow-container">
+
+<div class="slides fade">
+  <div class="advertisement">1 / 3</div><a id="userLink" href="https://www.cesco.co.kr/Cesco/default.aspx">
+  <img id="userImg" src="media/세스코.jpg" style="width:100%;height:300px"></a>
+</div>
+
+<div class="slides fade">
+  <div class="advertisement">2 / 3</div><a href="https://www.zigbang.com/">
+  <img src="media/직방.png" style="width:100%;height:300px"></a>
+</div>
+
+<div class="slides fade">
+  <div class="advertisement">3 / 3</div><a href="https://www.dabangapp.com">
+  <img src="media/다방.png" style="width:100%;height:300px"></a>
+</div>
+
+</div>
+<br>
+</article>
+<section>
+
+<article>
+ <table style="margin: 3% 12.3% 1%; padding: 0px; border-spacing: 0px; border-style: none;">
+ <tr>
+ <td><div class="box" style="background: #f79b60;">오늘의 저녁 메뉴는?<div id="dinner" style="font-size: 18px;" ondblclick="mix();"></div></div></td>
+ <td><div class="box" style="background: #ffd875;">정보를 입력해주세요!
+     <form><table id="survey_box"><tr><td>
+     닉네임: <input class="survey" type="text" value=""><br><br>
+     생년월일: <input class="survey" type="date" value="2002-07-25"><br><br>
+     이메일: <input class="survey" type="email" value="" placeholder="~ @ ~.com"><br>
+      <span style="font-size: 7px; color: gray;">*회원들과의 쪽지 공유에만 쓰입니다.</span><br><br>
+     사는 곳: <input class="survey" type="text" value="00시 00구"><br>
+      <span style="font-size: 7px; color: gray;">*날씨 정보를 제공해드립니다.</span></td>
+      <td style="padding: 0px 0px 20px 22px;">
+      <input id="profile" type="image" src="media/프로필.png" style="width: 15em; height: 16em;" onclick="store_survey()"></td>
+      </tr></table></form></div></td>
+ </tr><tr>
+ <td><div class="box" style="background: #ffd875;">오늘의 인기글!</div></td>
+ <td><div class="box" style="background: #f79b60;">오늘 <span id="region">서울의</span>날씨는?
+     <table id="weather_box"><tr>
+     <td><img id="weather_img" style="width: 150px; height: 150px;"></td>
+     <td><img src="media/온도계.png" style="width: 150px; height: 150px;"></td>
+     <td><img src="media/강수량.png" style="width: 160px; height: 160px;"></td>
+     </tr><tr>
+     <td class="weather_des">?</td>
+     <td class="weather_des">?</td>
+     <td class="weather_des">?</td>
+     </tr></table></div></td>
+ </tr>
+ </table>
+</article>
+</section>
+<script>
+function store_survey(){
+   let inputs=document.getElementsByClassName("survey");
+   for(let i=0; i<4; i++)
+      if(inputs[i].value==""){
+         alert("내용을 모두 입력해주세요!");
+         return;
+      }
+   let name=inputs[0];
+   let inform=[inputs[1].value, inputs[2].value, inputs[3].value];
+   if(!window.localStorage)
+   {
+      alert("세션스토리지를 지원하지 않습니다.");
+      return;
+   }
+   if (localStorage.getItem(name.value)!=null){
+      alert("이미 회원이십니다.")
+      sessionStorage.setItem(name.value, inform);
+      return show_inform(name.value);
+   }
+   localStorage.setItem(name.value, inform);
+   sessionStorage.setItem(name.value, inform);
+   show_inform(name.value);
+}
+function show_inform(name){
+   let boxes=document.getElementsByClassName("box");
+   let box=boxes[1];
+   let inform=localStorage.getItem(name);
+   inform_array=inform.split(",");
+   box.innerHTML=name+"님 환영합니다!<table id='survey_box'><tr><td>닉네임: "+name
+   +"<br><br>생년월일: "+inform_array[0]+"<br><br>이메일: "+inform_array[1]+"<br><br>사는 곳: "+inform_array[2]
+   +"<br><br></td><td style='padding: 0px 0px 20px 22px;'><img src='media/회원프로필.png' style='width: 13em; height: 15em;'></td></tr></table>";
+   document.getElementById("region").innerHTML=inform_array[2]+"의 ";
+   loadCoord();
+}
+
+
+function show_content(i) {
+   let key=post_arr[i];
+   let vals=localStorage.getItem(key).split(",");
+   let newWin=window.open("","","left=500, top=400, width=400, height=160");
+   newWin.document.write("<h3>게시글</h3><p style='text-align: right; color: gray; font-size: 13px;'>작성자: "+vals[4]+"</p><hr>");
+   newWin.document.title ="게시글 띄우기";
+   newWin.document.body.style.backgroundColor= "#FAEADE";
+    newWin.document.write(vals[1]);
+}
+let post_arr= new Array(5);
+function best(){
+   let boxes=document.getElementsByClassName("box");
+   let best_box=boxes[2];
+   if(window.localStorage){
+      let sen='<table id="best">';
+      if (localStorage.length==0){
+         sen+='<tr><td><br><img src="media/슬픔.png" style="width: 5em; height: 5em;"></td></tr>';
+         sen+='<tr><td style="color:gray; font-size:17px;">아직 게시글이 없어요,,!</td></tr>';
+      }
+      else{
+          let num_arr= [0,0,0,0,0];
+         for(let i=0; i<localStorage.length; i++){
+             let key=localStorage.key(i);
+              if(isNaN(key.substr(0,1))!=true){
+                 let vals=localStorage.getItem(key).split(",");
+                 for (let j=0; j<5; j++)
+                    if (parseInt(vals[3])>num_arr[j]){
+                       for (let t=4; t>j; t--){
+                          num_arr[t]=num_arr[t-1];
+                          post_arr[t]=post_arr[t-1];                          
+                       }   
+                       num_arr[j]=parseInt(vals[3]);
+                       post_arr[j]=key;
+                       break;
+                    }
+              }
+         }
+         sen+='<tr style="border: white solid 3px; background-color: rgb(255,255,255,0.5);"><td style="border-right: white dashed 2px; width:5.9%;">num</td>';
+         sen+='<td style="border-right: white dashed 2px; width: 58.9%;">제목</td>';
+         sen+='<td style="border-right: white dashed 2px; width: 22.9%;">작성자</td>';
+         sen+='<td style="width: 11.9%;">공감</td></tr>';
+         for(i=0; i<5; i++){
+            if (post_arr[i]!=null){
+               let vals=localStorage.getItem(post_arr[i]).split(",");
+               sen+='<tr style="border: white dashed 2px; border-left: white solid 4px; border-right: white solid 5px;"><td style="border-right: white dashed 2px;">'+(i+1)+'</td>';
+               sen+='<td style="border-right: white dashed 2px; text-align: left; padding-left: 4px; cursor:pointer;" onclick="show_content('+i+');">'+vals[0]+'</td>';
+               sen+='<td style="border-right: white dashed 2px;">'+vals[2]+'</td>';
+               sen+='<td><img src="media/공감.png" style="width:1em; height:1em;">X'+vals[3]+'</td></tr>';
+            }
+         }
+      }
+      sen+='</table>';
+      best_box.innerHTML+=sen;
+   }
+   else {
+      alert("지원하지 않습니다.");
+   }
+}
+</script>
+</body>
+</html>
